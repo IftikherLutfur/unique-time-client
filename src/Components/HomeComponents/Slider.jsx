@@ -4,17 +4,17 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Slider = () => {
     return (
-        <div>
+        <div >
            <Carousel>
-                <div>
+                <div className="h-[600px]">
                     <img src="https://www.newsletter.co.uk/webimg/TUFZMTIxNzk2MjA1.jpg?width=1200&enable=upscale" />
                     
                 </div>
-                <div>
+                <div className="h-96">
                     <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/72BA/production/_121107392_capture.png" />
                     
                 </div>
-                <div>
+                <div className="h-96">
                     <img src="https://static-prod.adweek.com/wp-content/uploads/2020/02/mcclatchy-files-bankruptcy-CONTENT-2020.jpg" />
                     
                 </div>

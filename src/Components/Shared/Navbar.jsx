@@ -4,7 +4,7 @@ const Navbar = () => {
 
     const [isOpen, setIsOpen] = useState(true)
     return (
-        <div className="fixed z-10 w-full opacity-70 bg-black text-white">
+        <div className="fixed z-10 w-full opacity-80 bg-black text-white">
             <nav className="relative">
     <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
