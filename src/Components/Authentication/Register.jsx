@@ -2,10 +2,12 @@ import { useForm } from "react-hook-form";
 import UseAuth from "../../Hooks/UseAuth";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
 
     const { createUser, update } = UseAuth();
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm({
@@ -14,12 +16,26 @@ const Register = () => {
     const onSubmit = async (data) => {
         console.log(data)
 
-
         createUser(data.email, data.password)
             .then(result => {
                 update(data.name, data.image)
                 console.log(result.user);
-                toast.success("Register Successful")
+        
+                const userInfo={
+                    name:data.name,
+                    email:data.email,
+                    image:data.image,
+                }
+                 
+                axiosPublic.post('/users' , userInfo)
+                .then(res=>{
+                    console.log(res.data);
+                    if(res.data.insertedId){
+                        toast.success("Register Successful")
+                    }
+                })
+
+
                 navigate('/')
             })
             .catch(error => {
@@ -31,7 +47,7 @@ const Register = () => {
 
     }
     return (
-        <div className="py-36 mx-44 flex justify-evenly" >
+        <div className="py-36 mx-44 flex items-center gap-4 justify-evenly" >
             <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 w-full dark:bg-gray-50 dark:text-gray-800">
                 <div className="mb-8 text-center">
                     <h1 className="my-3 text-4xl font-bold">Register Now!</h1>
