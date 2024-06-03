@@ -2,7 +2,7 @@
 const AddPublishers = () => {
     return (
         <div>
-            
+            Hello
         </div>
     );
 };

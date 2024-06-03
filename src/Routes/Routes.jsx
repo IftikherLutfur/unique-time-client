@@ -7,6 +7,7 @@ import Register from "../Components/Authentication/Register";
 import Login from "../Components/Authentication/Login";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import AllUsers from "../Components/Dashboard/AllUsers";
+import AddPublishers from "../Components/Dashboard/AddPublishers";
 
   const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ import AllUsers from "../Components/Dashboard/AllUsers";
         {
           path:'users',
           element:<AllUsers/>
+        },
+        {
+          path:'publisher',
+          element:<AddPublishers/>
         }
       ]
     }
