@@ -48,7 +48,7 @@ const Navbar = () => {
                                 </NavLink>   
                                 {user ?
                                     <a onClick={() => setIsOpen(!isOpen)} href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 rounded-md lg:mt-0 dark:text-gray-200 ">
-                                        <img className="w-[77px] h-[75px] rounded-full border-2 border-green-" src={user.photoURL} alt="" /></a>
+                                        <img className="w-[60px] h-[60px] rounded-full border-2 border-green-" src={user.photoURL} alt="" /></a>
                                     :
                                     <div>
                                         <NavLink to='/login'><a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</a></NavLink>

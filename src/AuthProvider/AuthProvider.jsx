@@ -2,12 +2,14 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState([]);
-
+    const [loading , setLoading] = useState(true)
+    const axiosPublic = useAxiosPublic();
     const provider = new GoogleAuthProvider();
 
     const googleLogin = () => {
@@ -15,6 +17,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -25,6 +28,7 @@ const AuthProvider = ({ children }) => {
         })
     }
     const login = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     const logOut = () => {
@@ -33,12 +37,32 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             console.log('current user', currentUser);
-            setUser(currentUser)
+            if(currentUser){
+                const userInfo = {email: currentUser?.email}
+                axiosPublic.post('/jwt', userInfo)
+                .then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token', res.data.token)
+                        console.log(res.data);
+                        setUser(currentUser);
+                        setLoading(false)
+                       
+                    }
+                })
+                
+            }
+
+            else{
+                localStorage.removeItem('access-token')
+                setUser(null)
+                setLoading(false)
+            }
+            
         })
         return () => {
             return unSubscribe();
         }
-    }, [])
+    }, [axiosPublic])
 
     const userInfo = {
         createUser,
@@ -46,7 +70,8 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         user,
         update,
-        logOut
+        logOut,
+        loading
     }
 
     return (
