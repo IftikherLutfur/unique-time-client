@@ -8,6 +8,7 @@ import Login from "../Components/Authentication/Login";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import AllUsers from "../Components/Dashboard/AllUsers";
 import AddPublishers from "../Components/Dashboard/AddPublishers";
+import AddArticles from "../Components/AddArticles/AddArticles";
 
   const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ import AddPublishers from "../Components/Dashboard/AddPublishers";
           path:'/login',
           element:<Login/>
         },
+        {
+          path:'/addArticle',
+          element:<AddArticles/>
+        }
 
       ]
     },
