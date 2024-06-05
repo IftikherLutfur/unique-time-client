@@ -9,11 +9,17 @@ import Dashboard from "../Components/Dashboard/Dashboard";
 import AllUsers from "../Components/Dashboard/AllUsers";
 import AddPublishers from "../Components/Dashboard/AddPublishers";
 import AddArticles from "../Components/AddArticles/AddArticles";
+import AllArticles from "../Components/Dashboard/AllArticles";
+import Error from "../Components/Error";
+import UserProfile from "../Components/UserProfile/UserProfile";
+import PrivateRoutes from "../Components/Authentication/PrivateRoutes";
+import AllArticlesForUser from "../Components/AllArticles/AllArticlesForUser";
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Root/>,
+      errorElement:<Error/>,
       children:[
         {
           path:'/',
@@ -29,7 +35,15 @@ import AddArticles from "../Components/AddArticles/AddArticles";
         },
         {
           path:'/addArticle',
-          element:<AddArticles/>
+          element:<PrivateRoutes><AddArticles/></PrivateRoutes>
+        },
+        {
+          path:'/userProfile',
+          element:<PrivateRoutes><UserProfile/></PrivateRoutes>
+        },
+        {
+          path:'/allArticlesForUser',
+          element:<AllArticlesForUser/>
         }
 
       ]
@@ -46,6 +60,10 @@ import AddArticles from "../Components/AddArticles/AddArticles";
         {
           path:'publisher',
           element:<AddPublishers/>
+        },
+        {
+          path:'allArticle',
+          element:<AllArticles/>
         }
       ]
     }

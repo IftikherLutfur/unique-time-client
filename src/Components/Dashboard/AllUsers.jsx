@@ -15,7 +15,7 @@ const AllUsers = () => {
     //     setUsers(res.data)
     // })
 
-    const { data: user = [] } = useQuery({
+    const { data: user = [], refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
@@ -31,6 +31,7 @@ const AllUsers = () => {
         console.log(res.data)
         if (res.data.deletedCount > 0) {
             toast.success(`${user?.name} has been deleted`)
+            refetch()
         }
 
 

@@ -1,3 +1,4 @@
+import Subscription from "../Subscription/Subscription";
 import AllPublisher from "./AllPublisher";
 import LiveNews from "./LiveNews";
 import Slider from "./Slider";
@@ -8,6 +9,7 @@ const Home = () => {
         <div>
             <Slider/>
             <AllPublisher/>
+            <Subscription/>
             <LiveNews/>
         </div>
     );
