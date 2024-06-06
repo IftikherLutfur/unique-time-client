@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../SectionTitle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { NavLink } from "react-router-dom";
 
 const AllArticlesForUser = () => {
 	const axiosPublic = useAxiosPublic();
@@ -28,8 +29,11 @@ const AllArticlesForUser = () => {
 							</div>
 						</div>
 						<h2 className="z-10 p-5">
+							<NavLink to={`/article/get/${article._id}`}>
 							<a rel="noopener noreferrer" href="#" className="font-medium text-md hover:underline dark:text-gray-800">{article.description}</a>
+							</NavLink>
 						</h2>
+						
 					</div> : '')}
 					
 				</div>

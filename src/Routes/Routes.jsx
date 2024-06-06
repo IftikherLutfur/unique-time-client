@@ -14,6 +14,8 @@ import Error from "../Components/Error";
 import UserProfile from "../Components/UserProfile/UserProfile";
 import PrivateRoutes from "../Components/Authentication/PrivateRoutes";
 import AllArticlesForUser from "../Components/AllArticles/AllArticlesForUser";
+import MyArticle from "../Components/MyArticle/MyArticle";
+import ArticleDetails from "../Components/MyArticle/ArticleDetails";
 
   const router = createBrowserRouter([
     {
@@ -44,6 +46,14 @@ import AllArticlesForUser from "../Components/AllArticles/AllArticlesForUser";
         {
           path:'/allArticlesForUser',
           element:<AllArticlesForUser/>
+        },
+        {
+          path:'/myArticle',
+          element:<PrivateRoutes><MyArticle/></PrivateRoutes>
+        },{
+          path:'/article/get/:id',
+          element: <PrivateRoutes><ArticleDetails/></PrivateRoutes>,
+          loader: ({params})=> fetch(`http://localhost:5000/article/get/${params.id}`)
         }
 
       ]

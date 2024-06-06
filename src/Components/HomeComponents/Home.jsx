@@ -1,6 +1,5 @@
 import GetPublishers from "../Publishers/GetPublishers";
 import Subscription from "../Subscription/Subscription";
-import AllPublisher from "./AllPublisher";
 import LiveNews from "./LiveNews";
 import Slider from "./Slider";
 
@@ -10,7 +9,6 @@ const Home = () => {
         <div>
             <Slider/>
             <GetPublishers/>
-            <AllPublisher/>
             <Subscription/>
             <LiveNews/>
         </div>

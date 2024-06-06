@@ -36,17 +36,35 @@ const Navbar = () => {
 
                         <div className="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
                             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-                               <NavLink to='/'>
+                              <div>
+                              <NavLink to='/'>
                                <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200
                      hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
                                </NavLink>
-                                <NavLink to='/addArticle'>
+                              </div>
+
+                             { user && <div>
+                               <NavLink to='/addArticle'>
                                 <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Add Articles</a>
                                 </NavLink>
-                              <NavLink to='/allArticlesForUser'>
+                               </div>}
+
+                             <div>
+                             <NavLink to='/allArticlesForUser'>
                               <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">All Articles</a>
                               </NavLink>
+                             </div>
+
+                            { user && <div>
+                             <NavLink to='/myArticle'>
+                              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">My Articles</a>
+                              </NavLink>
+                             </div>}
+
+                                <div>
                                 <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</a>
+                                </div>
+
                             {isAdmin && user ? <NavLink to='dashboard'>
                             <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</a>
                                 </NavLink> : '' } 

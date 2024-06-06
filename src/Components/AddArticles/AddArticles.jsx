@@ -3,6 +3,7 @@ import SectionTitle from "../SectionTitle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import UseAuth from "../../Hooks/UseAuth";
 import toast, { Toaster } from "react-hot-toast";
+import usePublisher from "../Publishers/usePublisher";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -10,6 +11,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddArticles = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = UseAuth();
+    const [getPublisher] = usePublisher();
     const { register, handleSubmit } = useForm({
         shouldUseNativeValidation: true,
     })
@@ -63,12 +65,11 @@ const AddArticles = () => {
                             <select {...register('publisher', { required: true })}
                                 className="block w-full px-4 py-2 mt-2 rounded-lg bg-white text-black dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring ">
                                 <option disabled selected>Select a Publisher</option>
-                                <option value="The New York Times">The New York Times</option>
-                                <option value="BBC News">BBC News</option>
-                                <option value="CNN">CNN</option>
+                                {getPublisher.map(publish=><option key={publish._id} value={publish.name}>{publish.name}</option>)}
+                                {/* <option value="CNN">CNN</option>
                                 <option value="The Guardian">The Guardian</option>
                                 <option value="Reuters">Reuters</option>
-                                <option value="Al Jazeera">Al Jazeera</option>
+                                <option value="Al Jazeera">Al Jazeera</option> */}
                             </select>
                         </div>
 
