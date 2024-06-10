@@ -3,9 +3,12 @@ import UseAuth from "../../Hooks/UseAuth";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useState } from "react";
+import { FaEye } from "react-icons/fa";
 
 const Login = () => {
 
+    const [show, setShow] = useState(false)
     const { login, googleLogin } = UseAuth();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
@@ -17,7 +20,7 @@ const Login = () => {
                 const userInfo = {
                     name:result?.user?.displayName,
                     image:result?.user?.photoURL,
-                    email:result?.user?.email
+                    email:result?.user?.email,
                 }
                 axiosPublic.post('/users', userInfo)
                 .then(res=>{
@@ -74,11 +77,12 @@ const Login = () => {
                         <div>
                             <label className="block mb-2 text-sm">Password</label>
 
-                            <input className="border-2 w-72 h-8 px-3 py-2  rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
+                            <input type={!show ? "password" : 'text'} className="border-2 w-72 h-8 px-3 py-2  rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
                                 {...register("password", {
                                     required: "Please enter your first name.",
                                 })}
                             />
+                             <p className="absolute bottom-48 left-[520px]" onClick={()=>setShow(!show)}><FaEye/></p>
                         </div>
 
 

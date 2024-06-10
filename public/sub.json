@@ -1,0 +1,36 @@
+[
+      {
+        "price": 5.99,
+        "time": "A Week",
+        "title": "Daily News Digest: Stay Informed with Breaking News and Top Stories Every Day",
+        "benefits": [
+          "Access to daily breaking news",
+          "Top stories in your inbox",
+          "Exclusive articles and reports",
+          "Customizable news alerts"
+        ]
+      },
+      {
+        "price": 9.99,
+        "time": "Month",        
+        "title": "Comprehensive Analysis Plan: In-Depth Articles and Expert Opinions on Current Events",
+        "benefits": [
+          "Detailed analysis of current events",
+          "Expert opinions and editorials",
+          "Weekly news summaries",
+          "Access to archives"
+        ]
+      },
+      {
+        "price": 24.99,
+        "time": "Year",
+        "title": "International News Package: Global Coverage and Reports from Correspondents Worldwide",
+        "benefits": [
+          "Global news coverage",
+          "Reports from international correspondents",
+          "Exclusive interviews and insights",
+          "Monthly global trend analysis"
+        ]
+      }
+    ]
+  

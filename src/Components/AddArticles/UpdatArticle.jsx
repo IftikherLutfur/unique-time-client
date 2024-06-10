@@ -1,16 +1,23 @@
-import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 import SectionTitle from "../SectionTitle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import UseAuth from "../../Hooks/UseAuth";
-import toast, { Toaster } from "react-hot-toast";
 import usePublisher from "../Publishers/usePublisher";
+import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-const AddArticles = () => {
+const UpdateArticle = () => {
+
+    const loader = useLoaderData();
+    console.log(loader);
+
+    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
-    const { user } = UseAuth();
+    const {user} = UseAuth();
     const [getPublisher] = usePublisher();
     const { register, handleSubmit } = useForm({
         shouldUseNativeValidation: true,
@@ -28,21 +35,17 @@ const AddArticles = () => {
 
         const articleInfo = {
             title: data.title,
-            publisher: data.publisher,
             description: data.description,
             image: res.data.data.display_url,
-            email: user?.email,
-            name: user?.name,
-            status: "pending"
+            tag: data.tag
         }
-        const postRes = await axiosPublic.post('/article', articleInfo)
-        console.log(postRes.data);
-        if (postRes.data.insertedId) {
-            toast.success("Article Published")
-        }
-
+    
+        const resUpdate = await axiosSecure.patch(`/article/update/${user.email}`, articleInfo)
+        if(resUpdate.data.modifiedCount>0){
+        toast.success('Data updated')}
+        console.log(resUpdate.data);
+        return resUpdate.data;
     }
-
     return (
         <div className="pt-32">
             <SectionTitle heading="add an article"></SectionTitle>
@@ -53,7 +56,7 @@ const AddArticles = () => {
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
                             <label className="text-white font-semibold">Title</label>
-                            <input id="username" type="text"
+                            <input id="username" type="text" defaultValue={loader.title}
                                 {...register("title", {
                                     required: "Please enter your first name.",
                                 })}
@@ -75,7 +78,7 @@ const AddArticles = () => {
 
                         <div className="col-span-2 row-span-4">
                             <label className="text-white font-semibold">Description</label>
-                            <input type="text"
+                            <input type="text" defaultValue={loader.description}
                                 {...register("description", {
                                     required: "Please enter your first name.",
                                 })}
@@ -114,4 +117,4 @@ const AddArticles = () => {
     );
 };
 
-export default AddArticles;
+export default UpdateArticle;

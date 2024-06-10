@@ -23,6 +23,7 @@ const MyArticle = () => {
 
    const handleUpdate =async (art) =>{
        console.log(art);
+
    }
    const handleDelete = async (art) =>{
       const resDelete = await axiosPublic.delete(`/article/${art._id}`)
@@ -133,9 +134,12 @@ const MyArticle = () => {
 
                                             <td className="py-4 text-sm whitespace-nowrap">
                                                 <div className="flex items-center gap-x-6">
-       <button  onClick={()=>handleUpdate(art)} className={ art.status === 'decline' ? "hidden" : " text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"}>
-                                                    <MdEdit/>
+               <NavLink to={`/article/update/${art._id}`}>
+               <button  onClick={()=>handleUpdate(art)} className={ art.status === 'decline' ? "hidden" : " text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"}><MdEdit/>
+                                                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
                                                     </button>
+               </NavLink>
 
                                                     <button onClick={() => handleDelete(art)} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                         <AiFillDelete />

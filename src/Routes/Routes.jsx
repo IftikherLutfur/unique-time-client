@@ -16,6 +16,8 @@ import PrivateRoutes from "../Components/Authentication/PrivateRoutes";
 import AllArticlesForUser from "../Components/AllArticles/AllArticlesForUser";
 import MyArticle from "../Components/MyArticle/MyArticle";
 import ArticleDetails from "../Components/MyArticle/ArticleDetails";
+import UpdateArticle from "../Components/AddArticles/UpdatArticle";
+import PaymentMethod from '../Components/PaymentMethod/PaymentMethod'
 
   const router = createBrowserRouter([
     {
@@ -50,11 +52,22 @@ import ArticleDetails from "../Components/MyArticle/ArticleDetails";
         {
           path:'/myArticle',
           element:<PrivateRoutes><MyArticle/></PrivateRoutes>
-        },{
+        },
+        {
           path:'/article/get/:id',
           element: <PrivateRoutes><ArticleDetails/></PrivateRoutes>,
           loader: ({params})=> fetch(`http://localhost:5000/article/get/${params.id}`)
-        }
+        },
+        {
+          path:'/article/update/:id',
+          element: <PrivateRoutes><UpdateArticle/></PrivateRoutes>,
+          loader: ({params})=> fetch(`http://localhost:5000/article/update/${params.id}`)
+        },
+        {
+          path:'/premium/:id',
+          element:<PrivateRoutes><PaymentMethod/></PrivateRoutes>,
+          loader:({params})=>fetch(`http://localhost:5000/premium/${params.id}`)
+        },
 
       ]
     },
@@ -64,7 +77,7 @@ import ArticleDetails from "../Components/MyArticle/ArticleDetails";
       element:<Dashboard/>,
       children:[
         {
-          path:'users',
+          path:'/dashboard',
           element:<AllUsers/>
         },
         {

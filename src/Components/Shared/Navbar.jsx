@@ -2,17 +2,33 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAdmin from "../Dashboard/UseAdmin";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const Navbar = () => {
+    const axiosPublic = useAxiosPublic();
     const { user, logOut } = UseAuth();
     const [isOpen, setIsOpen] = useState(true);
-
      const [isAdmin] = UseAdmin(); 
-
     const handleLogOut = () =>{
         logOut();
     }
+
+    const {data: users = []} = useQuery({
+        queryKey:['users'],
+        queryFn: async () =>{
+            const res = await axiosPublic.get('/user')
+            console.log(res.data);
+            return res.data;
+        }
+    })
+
+
+    const isPremium = users.filter(user=>user.isPremium === "yes")
+    console.log(isPremium);
+
+    console.log(users);
 
     return (
         <div className="fixed z-10 w-full bg-opacity-60 bg-black text-white">
@@ -43,6 +59,7 @@ const Navbar = () => {
                                </NavLink>
                               </div>
 
+
                              { user && <div>
                                <NavLink to='/addArticle'>
                                 <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Add Articles</a>
@@ -52,6 +69,13 @@ const Navbar = () => {
                              <div>
                              <NavLink to='/allArticlesForUser'>
                               <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">All Articles</a>
+                              </NavLink>
+                             <NavLink to='/'>
+                           {  isPremium.map(us=><div key={us._id}>{us.isPremium === "yes" &&
+                              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0
+                               dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700
+                               ">Premium Articles</a> 
+                              } </div>)}
                               </NavLink>
                              </div>
 

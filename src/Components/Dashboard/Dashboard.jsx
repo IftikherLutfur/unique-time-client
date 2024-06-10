@@ -1,4 +1,4 @@
-import { FaHome } from "react-icons/fa";
+import { FaBookMedical, FaHome, FaUsersCog } from "react-icons/fa";
 import { MdAddToPhotos } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -9,22 +9,18 @@ const Dashboard = () => {
 
                 <div className="w-48 bg-orange-600 text-white min-h-screen">
                     <ul className="text-xl text-center my-10">
-                        <NavLink to='/dashboard/users'>
-                            <li className=" my-2">
-                                All Users
-                            </li>
+                        <NavLink to='/dashboard'>
+                        <button className="btn bg-orange-700 text-white mb-2 w-full px-3"> <li className="flex items-center gap-2 mx-4"><FaUsersCog />All User</li></button>
                         </NavLink>
                         <NavLink to='/dashboard/allArticle'>
-                            <li className=" my-2">
-                                All Articles
-                            </li>
+                            <button className="btn bg-orange-700 text-white mb-2 w-full px-3"> <li className="flex items-center gap-2 mx-4"> <FaBookMedical /> All Articles</li></button>
                         </NavLink>
                         <NavLink to='/dashboard/publisher'>
-                            <button className="btn w-full px-3 bg-pink-400"> <li className="flex items-center gap-2 mx-4"><MdAddToPhotos/>Add Publishers</li></button>
+                            <button className="btn bg-orange-700 text-white mb-2 w-full px-3"> <li className="flex items-center gap-2 mx-4"><MdAddToPhotos/>Add Publishers</li></button>
                         </NavLink>
                     <div className=" divider"></div>
                     <NavLink to='/'>
-                       <button className="btn w-full px-3 bg-pink-400"> <li className="flex items-center gap-2 mx-4"><FaHome/>Home</li></button>
+                       <button className="btn bg-orange-700 text-white mb-2 w-full px-3"> <li className="flex items-center gap-2 mx-4"><FaHome/>Home</li></button>
                     </NavLink>
                     </ul>
                 </div>

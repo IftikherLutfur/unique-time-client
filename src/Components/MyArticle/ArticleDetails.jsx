@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
 import { useLoaderData } from "react-router-dom";
 
 const ArticleDetails = () => {
@@ -13,7 +12,6 @@ const ArticleDetails = () => {
                     <div className="space-y-2">
                         <img src={loader.image} alt="" className="block object-cover object-center w-full rounded-md dark:bg-gray-500" />
                         <div className="flex items-center text-xs">
-                            <span>6 min ago</span>
                         </div>
                     </div>
                 </div>

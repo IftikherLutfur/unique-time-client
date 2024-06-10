@@ -8,6 +8,7 @@ import SectionTitle from "../SectionTitle";
 const AllArticles = () => {
 
     const axiosSecure = useAxiosSecure();
+
     const { data: articles = [] , refetch} = useQuery({
         queryKey: ['article'],
         queryFn: async () => {
@@ -16,6 +17,21 @@ const AllArticles = () => {
             return (await res).data;
         }
     })
+
+
+    // const { register, handleSubmit } = useForm({
+    //     shouldUseNativeValidation: true,
+    // })
+    // const onSubmit = async (data) => {
+    //     console.log(data);
+    //    const info = {
+    //     reason: data.name
+    //    }
+
+    //    const cancel = await axiosPublic.post('/cancel', info)
+    //    console.log(cancel.data);
+    //    return cancel.data;
+    // }
 
     const handleUpdate = async (article) =>{
         console.log(article);
@@ -48,7 +64,7 @@ const AllArticles = () => {
     }
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 mr-24">
            <SectionTitle heading='here is all article' subHeading='Hello admin you can accept, reject and delete anyone you want'/>
             <section className="container px-4 mx-auto">
                 <div className="flex items-center gap-x-3">
@@ -60,7 +76,7 @@ const AllArticles = () => {
 </div>
                 </div>
 
-                <div className="flex flex-col mt-px">
+                <div className="flex flex-col mt-px w-[1000px]">
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
@@ -95,9 +111,7 @@ const AllArticles = () => {
 
 
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Email address</th>
-                                            <th scope="col" className="relative py-3.5 px-4">
-                                                <span className="sr-only">Edit</span>
-                                            </th>
+                                          
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Actions</th>
 
 
@@ -131,19 +145,17 @@ const AllArticles = () => {
 
                                             <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                 <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-
-                                                    <h2 className="text-sm font-normal text-emerald-500">Somoy Tv</h2>
+                                                    <h2 className="text-sm font-normal text-emerald-500">{article.publisher}</h2>
                                                 </div>
                                             </td>
 
 
 
 
-                                            <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                            <td className="px-4 py-4 w-24 text-sm whitespace-nowrap">
                                                 <p className="text-white">{article.title}</p>
                                             </td>
-                                            <td></td>
+                                            {/* <td></td> */}
 
                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                 <div className="flex items-center gap-x-6">
@@ -151,10 +163,14 @@ const AllArticles = () => {
                                                     <MdDownloadDone />
                                                     </button>
 
-         <button onClick={()=>handleCancel(article)} 
+         <button  onClick={()=>handleCancel(article)}
          className={article.status === 'decline' ? "hidden" : "text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"}>
-                                                        <MdCancel />
+                                                        <MdCancel/>
                                                     </button>
+                                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+
+
                                                     <button onClick={() => handleDelete(article)} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                         <AiFillDelete />
                                                     </button>
