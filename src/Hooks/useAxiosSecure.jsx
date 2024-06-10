@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export const axiosSecure = axios.create({
-    baseURL: 'https://unique-time-server.vercel.app'
+    baseURL: 'unique-time-server.vercel.app'
 })
 const useAxiosSecure = () => {
 
