@@ -14,7 +14,7 @@ const SearchImplement = () => {
     }
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/article?search=${search}`)
+        fetch(`https://unique-time-server.vercel.app/article?search=${search}`)
         .then(res=>res.json())
         .then(data=>setSearch(data))
     },[ search])

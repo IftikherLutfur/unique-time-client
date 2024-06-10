@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 
@@ -10,7 +10,7 @@ const Pay = () => {
     const [totalPrice, setTotalPrice] = useState();
 
     const priceNumber = parseFloat(price);
-
+  const navigate = useNavigate()
     //convert it in days
     const periodValues = {
         "1": 10 / (24 * 60),
@@ -36,7 +36,7 @@ const Pay = () => {
         // console.log(totalPrice);
 
 
-        // navigate(/payment/${totalPrice});
+        navigate(`/payment/${totalPrice}`);
     };
 
     return (

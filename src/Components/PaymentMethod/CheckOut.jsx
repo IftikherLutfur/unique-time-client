@@ -29,6 +29,15 @@ const CheckOut = ({ subscriptionData }) => {
 
     }, [axiosPublic, total])
 
+    const handleUpdate = async(user)=>{
+        const info = {
+            isPremium: "yes"
+         }
+         const updateRes = await axiosPublic.patch(`/user/update/${user.email}` , info)
+         console.log(updateRes.data)
+         return updateRes.data;
+    }
+
    
 
     const handleSubmit = async (event) => {
@@ -72,18 +81,15 @@ const CheckOut = ({ subscriptionData }) => {
             if(paymentIntent.status === "succeeded"){
                 console.log("transaction id" ,paymentIntent.id);
                 setSuccess(paymentIntent.id)
-                    const info = {
-                       isPremium: formatISO(new Date())
-                    }
-                    const updateRes = await axiosPublic.patch(`/user/update/${user.email}` , info)
-                    console.log(updateRes.data);
-                    return updateRes.data;
+                    
                    
             }
         }
 
-
-    }
+        
+        
+        }
+            
     return (
         <form className="w-96 mx-[330px] mt-10" onSubmit={handleSubmit}>
             <CardElement
@@ -110,7 +116,7 @@ const CheckOut = ({ subscriptionData }) => {
                 </select>
             </div>
             <div className="text-center">
-                <button
+                <button onClick={()=>handleUpdate(user)}
                  className="btn w-full bg-pink-400 mt-5 text-center" 
                  type="submit" disabled={!stripe || !clientSecret}>
                     Pay

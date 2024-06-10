@@ -18,6 +18,7 @@ import MyArticle from "../Components/MyArticle/MyArticle";
 import ArticleDetails from "../Components/MyArticle/ArticleDetails";
 import UpdateArticle from "../Components/AddArticles/UpdatArticle";
 import PaymentMethod from '../Components/PaymentMethod/PaymentMethod'
+import CheckOut from "../Components/PaymentMethod/CheckOut";
 
   const router = createBrowserRouter([
     {
@@ -56,18 +57,26 @@ import PaymentMethod from '../Components/PaymentMethod/PaymentMethod'
         {
           path:'/article/get/:id',
           element: <PrivateRoutes><ArticleDetails/></PrivateRoutes>,
-          loader: ({params})=> fetch(`http://localhost:5000/article/get/${params.id}`)
+          loader: ({params})=> fetch(`https://unique-time-server.vercel.app/article/get/${params.id}`)
         },
         {
           path:'/article/update/:id',
           element: <PrivateRoutes><UpdateArticle/></PrivateRoutes>,
-          loader: ({params})=> fetch(`http://localhost:5000/article/update/${params.id}`)
+          loader: ({params})=> fetch(`https://unique-time-server.vercel.app/article/update/${params.id}`)
         },
         {
           path:'/premium/:id',
           element:<PrivateRoutes><PaymentMethod/></PrivateRoutes>,
-          loader:({params})=>fetch(`http://localhost:5000/premium/${params.id}`)
+          loader:({params})=>fetch(`https://unique-time-server.vercel.app/premium/${params.id}`)
         },
+        {
+          path:'/premium/:price',
+          element: <PrivateRoutes><CheckOut/></PrivateRoutes>
+        },
+        {
+          path:"/all",
+          element:<ArticleDetails></ArticleDetails>
+        }
 
       ]
     },

@@ -3,7 +3,7 @@ import SectionTitle from "../SectionTitle";
 import { useLoaderData } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckOut from "./CheckOut";
-import Pay from "./Pay";
+// import Pay from "./Pay";
 
 
 const PaymentMethod = () => {
@@ -21,7 +21,7 @@ const PaymentMethod = () => {
            
            </Elements>
 
-           <Pay></Pay>
+           {/* <Pay></Pay> */}
             </div>            
         </div>
     );

@@ -8,7 +8,7 @@ const UseSubscriptionCart = () => {
         queryKey:['cart'],
         queryFn: async () =>{
          const result = await axiosPublic.get('/premium')
-         console.log(result.data);
+        //  console.log(result.data);
          return result.data
         }
     }) 
