@@ -2,12 +2,10 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAdmin from "../Dashboard/UseAdmin";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const Navbar = () => {
-    const axiosPublic = useAxiosPublic();
+    
     const { user, logOut } = UseAuth();
     const [isOpen, setIsOpen] = useState(true);
      const [isAdmin] = UseAdmin(); 
@@ -15,14 +13,6 @@ const Navbar = () => {
         logOut();
     }
 
-    const {data: users = []} = useQuery({
-        queryKey:['users'],
-        queryFn: async () =>{
-            const res = await axiosPublic.get('/user')
-          
-            return res.data;
-        }
-    })
     
 
     return (
