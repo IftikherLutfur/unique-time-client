@@ -57,17 +57,20 @@ import CheckOut from "../Components/PaymentMethod/CheckOut";
         {
           path:'/article/get/:id',
           element: <PrivateRoutes><ArticleDetails/></PrivateRoutes>,
-          loader: ({params})=> fetch(`unique-time-server.vercel.app/article/get/${params.id}`)
+          loader: ({params})=> fetch(`unique-time-server.vercel.app
+/article/get/${params.id}`)
         },
         {
           path:'/article/update/:id',
           element: <PrivateRoutes><UpdateArticle/></PrivateRoutes>,
-          loader: ({params})=> fetch(`unique-time-server.vercel.app/article/update/${params.id}`)
+          loader: ({params})=> fetch(`unique-time-server.vercel.app
+/article/update/${params.id}`)
         },
         {
           path:'/premium/:id',
           element:<PrivateRoutes><PaymentMethod/></PrivateRoutes>,
-          loader:({params})=>fetch(`unique-time-server.vercel.app/premium/${params.id}`)
+          loader:({params})=>fetch(`unique-time-server.vercel.app
+/premium/${params.id}`)
         },
         {
           path:'/premium/:price',
