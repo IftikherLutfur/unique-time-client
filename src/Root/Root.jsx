@@ -4,7 +4,7 @@ import Footer from "../Components/Shared/Footer";
 
 const Root = () => {
     return (
-        <div className="">
+        <div className="max-h-svh">
             <Navbar/>
             <Outlet/>
             <Footer/>

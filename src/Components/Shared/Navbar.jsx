@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAdmin from "../Dashboard/UseAdmin";
+import UsePremium from "../../Hooks/UsePremium";
 
 
 const Navbar = () => {
@@ -9,6 +10,7 @@ const Navbar = () => {
     const { user, logOut } = UseAuth();
     const [isOpen, setIsOpen] = useState(true);
      const [isAdmin] = UseAdmin(); 
+     const [isPremium] = UsePremium();
     const handleLogOut = () =>{
         logOut();
     }
@@ -57,6 +59,12 @@ const Navbar = () => {
                               </NavLink>
                             
                              </div>
+
+                             {isPremium && user ? <div>
+                             <NavLink to='/premiumArticle'>
+                              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Premium</a>
+                              </NavLink>
+                             </div> : ''}
 
                             { user && <div>
                              <NavLink to='/myArticle'>

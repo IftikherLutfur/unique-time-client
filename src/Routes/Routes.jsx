@@ -19,6 +19,9 @@ import ArticleDetails from "../Components/MyArticle/ArticleDetails";
 import UpdateArticle from "../Components/AddArticles/UpdatArticle";
 import PaymentMethod from '../Components/PaymentMethod/PaymentMethod'
 import CheckOut from "../Components/PaymentMethod/CheckOut";
+import PremiumArticle from "../Components/PremuimArticle/PremiumArticle";
+import PremiumArticlesDetails from "../Components/PremuimArticle/PremiumArticlesDetails";
+import StatisticPage from "../Components/Dashboard/StatisticPage";
 
   const router = createBrowserRouter([
     {
@@ -57,19 +60,19 @@ import CheckOut from "../Components/PaymentMethod/CheckOut";
         {
           path:'/article/get/:id',
           element: <PrivateRoutes><ArticleDetails/></PrivateRoutes>,
-          loader: ({params})=> fetch(`unique-time-server.vercel.app
+          loader: ({params})=> fetch(`https://unique-time-server.vercel.app
 /article/get/${params.id}`)
         },
         {
           path:'/article/update/:id',
           element: <PrivateRoutes><UpdateArticle/></PrivateRoutes>,
-          loader: ({params})=> fetch(`unique-time-server.vercel.app
+          loader: ({params})=> fetch(`https://unique-time-server.vercel.app
 /article/update/${params.id}`)
         },
         {
           path:'/premium/:id',
           element:<PrivateRoutes><PaymentMethod/></PrivateRoutes>,
-          loader:({params})=>fetch(`unique-time-server.vercel.app
+          loader:({params})=>fetch(`https://unique-time-server.vercel.app
 /premium/${params.id}`)
         },
         {
@@ -79,6 +82,15 @@ import CheckOut from "../Components/PaymentMethod/CheckOut";
         {
           path:"/all",
           element:<ArticleDetails></ArticleDetails>
+        },
+        {
+          path:'/premiumArticle',
+          element:<PrivateRoutes><PremiumArticle/></PrivateRoutes>
+        },
+        {
+          path:'/premiums/:id',
+          element:<PrivateRoutes><PremiumArticlesDetails/></PrivateRoutes>,
+          loader: ({params})=> fetch(`https://unique-time-server.vercel.app/premiums/${params.id}`)
         }
 
       ]
@@ -90,6 +102,10 @@ import CheckOut from "../Components/PaymentMethod/CheckOut";
       children:[
         {
           path:'/dashboard',
+          element:<StatisticPage/>
+        },
+        {
+          path:'allUsers',
           element:<AllUsers/>
         },
         {

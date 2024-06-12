@@ -1,36 +1,72 @@
 [
-      {
-        "price": 5.99,
-        "time": "A Week",
-        "title": "Daily News Digest: Stay Informed with Breaking News and Top Stories Every Day",
-        "benefits": [
-          "Access to daily breaking news",
-          "Top stories in your inbox",
-          "Exclusive articles and reports",
-          "Customizable news alerts"
-        ]
-      },
-      {
-        "price": 9.99,
-        "time": "Month",        
-        "title": "Comprehensive Analysis Plan: In-Depth Articles and Expert Opinions on Current Events",
-        "benefits": [
-          "Detailed analysis of current events",
-          "Expert opinions and editorials",
-          "Weekly news summaries",
-          "Access to archives"
-        ]
-      },
-      {
-        "price": 24.99,
-        "time": "Year",
-        "title": "International News Package: Global Coverage and Reports from Correspondents Worldwide",
-        "benefits": [
-          "Global news coverage",
-          "Reports from international correspondents",
-          "Exclusive interviews and insights",
-          "Monthly global trend analysis"
-        ]
-      }
-    ]
-  
+  {
+      "title": "The Rise of Electric Vehicles in 2024",
+      "image": "https://example.com/image1.jpg",
+      "description": "Electric vehicles are set to dominate the automotive market in 2024 with advancements in battery technology and increased range capabilities.",
+      "time": "3 hours ago",
+      "itc": "Automotive News"
+  },
+  {
+      "title": "Breakthrough in Cancer Treatment: New Drug Shows Promising Results",
+      "image": "https://example.com/image2.jpg",
+      "description": "A new drug developed by researchers has shown promising results in treating aggressive forms of cancer in early-stage clinical trials.",
+      "time": "5 hours ago",
+      "itc": "Medical Journal"
+  },
+  {
+      "title": "The Impact of AI on Modern Education",
+      "image": "https://example.com/image3.jpg",
+      "description": "Artificial Intelligence is transforming the education sector by providing personalized learning experiences and automating administrative tasks.",
+      "time": "1 day ago",
+      "itc": "EdTech Review"
+  },
+  {
+      "title": "Climate Change: Global Leaders Pledge to Reduce Emissions",
+      "image": "https://example.com/image4.jpg",
+      "description": "World leaders have committed to significant emission reductions to combat climate change at the latest international summit.",
+      "time": "2 days ago",
+      "itc": "Environmental News"
+  },
+  {
+      "title": "Exploring the Deep Sea: New Species Discovered",
+      "image": "https://example.com/image5.jpg",
+      "description": "Scientists have discovered several new species in the depths of the ocean, shedding light on the biodiversity of marine life.",
+      "time": "6 hours ago",
+      "itc": "Marine Biology Today"
+  },
+  {
+      "title": "Advances in Quantum Computing: What’s Next?",
+      "image": "https://example.com/image6.jpg",
+      "description": "Quantum computing is progressing rapidly, with new developments that could revolutionize industries such as cryptography and pharmaceuticals.",
+      "time": "8 hours ago",
+      "itc": "Tech Innovations"
+  },
+  {
+      "title": "The Future of Space Exploration: Mars Colonization Plans",
+      "image": "https://example.com/image7.jpg",
+      "description": "NASA and private companies are making significant strides towards the goal of colonizing Mars, with missions planned in the next decade.",
+      "time": "1 day ago",
+      "itc": "Space Exploration Weekly"
+  },
+  {
+      "title": "Economic Outlook 2024: Trends to Watch",
+      "image": "https://example.com/image8.jpg",
+      "description": "Economists provide insights into the key trends that will shape the global economy in 2024, from inflation to technological advancements.",
+      "time": "12 hours ago",
+      "itc": "Financial Times"
+  },
+  {
+      "title": "Revolutionizing Healthcare: The Role of Telemedicine",
+      "image": "https://example.com/image9.jpg",
+      "description": "Telemedicine is changing the healthcare landscape by providing remote care solutions, especially in underserved areas.",
+      "time": "10 hours ago",
+      "itc": "Health News Today"
+  },
+  {
+      "title": "The Renaissance of Vinyl: Why Records are Making a Comeback",
+      "image": "https://example.com/image10.jpg",
+      "description": "Vinyl records are experiencing a resurgence in popularity among music enthusiasts, driven by a desire for tangible media and superior sound quality.",
+      "time": "2 days ago",
+      "itc": "Music Industry Insights"
+  }
+]

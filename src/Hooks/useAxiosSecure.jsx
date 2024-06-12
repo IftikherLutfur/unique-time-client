@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export const axiosSecure = axios.create({
-    baseURL: 'unique-time-server.vercel.app'})
+    baseURL: 'https://unique-time-server.vercel.app'})
 const useAxiosSecure = () => {
 
     const {logOut} = UseAuth();

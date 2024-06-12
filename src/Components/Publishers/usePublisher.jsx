@@ -7,10 +7,10 @@ const usePublisher = () => {
         queryKey:['getData'],
         queryFn: async () =>{
             const res  = await axiosPublic.get('/publisher')
-           
             return res.data;
         }
     })
+
     return [getPublisher]
 }
 export default usePublisher;

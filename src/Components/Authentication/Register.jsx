@@ -66,7 +66,7 @@ const Register = () => {
                     name:data.name,
                     email:data.email,
                     image:res.data.data.display_url,
-                    isPremium: null
+                    isPremium: 'no'
                 } 
                  
                 axiosPublic.post('/users' , userInfo)

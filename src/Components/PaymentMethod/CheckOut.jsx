@@ -1,44 +1,42 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import UseAuth from "../../Hooks/UseAuth";
 import UserUpdate from "../../Hooks/UserUpdate";
-import { formatISO } from "date-fns";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const CheckOut = ({ subscriptionData }) => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
-    const [clientSecret , setClientSecret] = useState("")
-    const {user} = UseAuth();
+    const [clientSecret, setClientSecret] = useState("")
+    const { user } = UseAuth();
+    // const [userInfo] = useUserData();
+    // console.log(userInfo)
     const stripe = useStripe();
     const elements = useElements();
     const total = subscriptionData.price;
-    console.log(total);
     // const [cart] = UseSubscriptionCart();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [userData] = UserUpdate();
-    console.log(userData);
+    console.log(userData)
     // const useData = userData.map( data =>data?.email === user?.email) 
     // console.log(useData);
 
     useEffect(() => {
-        axiosPublic.post('/create-payment-intent', {price:total})
-            .then(res =>{
+        axiosSecure.post('/create-payment-intent', { price: total })
+            .then(res => {
+                console.log('clientSecret', res.data.clientSecret)
                 setClientSecret(res.data.clientSecret)
             })
 
-    }, [axiosPublic, total])
+    }, [axiosSecure, total])
 
-    const handleUpdate = async(user)=>{
-        const info = {
-            isPremium: "yes"
-         }
-         const updateRes = await axiosPublic.patch(`/user/update/${user.email}` , info)
-         console.log(updateRes.data)
-         return updateRes.data;
+    const handleUpdate = async (user) => {
+        console.log(user);
+
     }
 
-   
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -61,35 +59,43 @@ const CheckOut = ({ subscriptionData }) => {
         else {
             console.log("Payment success", paymentMethod);
             setError('')
-            
+
         }
 
-        const {paymentIntent , error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
-            payment_method:{
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
                 card: card,
-                billing_details:{
-                email:user?.email || "anonymous",
-                name:user?.displayName || "anonymous"
+                billing_details: {
+                    email: user?.email || "anonymous",
+                    name: user?.displayName || "anonymous"
                 }
             }
         })
-        if(confirmError){
+        if (confirmError) {
             console.log('confirm error');
         }
-        else{
+        else {
             console.log('payment intent', paymentIntent);
-            if(paymentIntent.status === "succeeded"){
-                console.log("transaction id" ,paymentIntent.id);
+            if (paymentIntent.status === "succeeded") {
+                console.log("transaction id", paymentIntent.id);
                 setSuccess(paymentIntent.id)
-                    
-                   
+                const info = {
+                    isPremium: "yes"
+                }
+                const updateRes = await axiosSecure.patch(`/isPremium/update/${user?.email}`, info)
+                console.log('update', updateRes.data)
+                if(updateRes.data.modifiedCount>0){
+                    toast.success("Payment Successful")
+                }
+                return updateRes.data;
+                
             }
         }
 
-        
-        
-        }
-            
+
+
+    }
+
     return (
         <form className="w-96 mx-[330px] mt-10" onSubmit={handleSubmit}>
             <CardElement
@@ -116,11 +122,12 @@ const CheckOut = ({ subscriptionData }) => {
                 </select>
             </div>
             <div className="text-center">
-                <button onClick={()=>handleUpdate(user)}
-                 className="btn w-full bg-pink-400 mt-5 text-center" 
-                 type="submit" disabled={!stripe || !clientSecret}>
+                <button onClick={() => handleUpdate(user)}
+                    className="btn w-full bg-pink-400 mt-5 text-center"
+                    type="submit" disabled={!stripe || !clientSecret}>
                     Pay
                 </button>
+                <Toaster/>
             </div>
 
             <p className="text-red-600">

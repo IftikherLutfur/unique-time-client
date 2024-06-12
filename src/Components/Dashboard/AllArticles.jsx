@@ -19,20 +19,6 @@ const AllArticles = () => {
     })
 
 
-    // const { register, handleSubmit } = useForm({
-    //     shouldUseNativeValidation: true,
-    // })
-    // const onSubmit = async (data) => {
-    //     console.log(data);
-    //    const info = {
-    //     reason: data.name
-    //    }
-
-    //    const cancel = await axiosPublic.post('/cancel', info)
-    //    console.log(cancel.data);
-    //    return cancel.data;
-    // }
-
     const handleUpdate = async (article) =>{
         console.log(article);
         const updateRes = await axiosSecure.patch(`/article/${article._id}`)

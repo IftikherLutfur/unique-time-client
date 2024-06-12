@@ -3,12 +3,14 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import SectionTitle from "../SectionTitle";
 import toast, { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import UseAdmin from "./UseAdmin";
 
 
 const AllUsers = () => {
 
     // const [users, setUsers] = useState([]);
     const axiosSecure = useAxiosSecure();
+    const [isAdmin] = UseAdmin();
 
     // axiosSecure.get('/users')
     // .then(res=>{
@@ -119,8 +121,17 @@ const AllUsers = () => {
                                                 </div>
                                             </td>
 
-                                            <td className="px-8 py-4 text-sm font-medium text-white whitespace-nowrap">
-                                                {users.name}
+                                            <td className="px-8 py-4 text-sm flex gap-2 font-medium text-white whitespace-nowrap">
+                                               <div>
+                                               {users.name}
+                                               </div>
+                                              <div>
+                                              {
+                                users.isPremium === 'yes' ?                                                 <div className=" absolute rounded-md text-center item-center bg-green-500 text-white">
+                                 <small className= "h-1.5 p-px rounded-md w-1.5  ">Premium</small>
+                            </div>: ""
+                              }
+                                              </div>
                                             </td>
                                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                 {/*empty for gap  */}
@@ -150,14 +161,9 @@ const AllUsers = () => {
 
 
                                                 </div>
+                             
                                             </td>
                                         </tr>
-
-
-
-
-
-
 
 
                                     </tbody>)}

@@ -1,5 +1,5 @@
 
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
 
 const ArticleDetails = () => {
     const loader = useLoaderData();
@@ -29,6 +29,7 @@ const ArticleDetails = () => {
                 </div>
 
             </div>
+           
         </div>
     );
 };
