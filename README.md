@@ -1,4 +1,4 @@
-## Concepts:
+## Project Overview:
 1.News Article Publishing Website: A platform where various news articles are published.
 2.User-Submitted Articles: Users can add articles under specific publishers.
 3.Article Accessibility: Normal users can view all articles except for premium ones.
