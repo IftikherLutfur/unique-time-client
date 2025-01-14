@@ -25,7 +25,7 @@ const Slider = () => {
                         className="w-full h-[60vh] object-cover rounded-md"
                     />
                 </div>
-                <div className="w-full">
+                <div className="w-full">    
                     <img 
                         src="https://static-prod.adweek.com/wp-content/uploads/2020/02/mcclatchy-files-bankruptcy-CONTENT-2020.jpg" 
                         alt="Slide 3" 
