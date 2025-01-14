@@ -31,7 +31,7 @@ const Subscription = () => {
 					</div>
 					<div className="grid max-w-md grid-cols-1 gap-6 mx-auto auto-rows-fr lg:max-w-full lg:gap-2 xl:gap-6 lg:grid-cols-3">
 
-						{premium?.map(sb => <div key={sb._id} className="relative z-0 flex flex-col items-center p-8 border rounded-md">
+						{premium?.map(sb => <div key={sb._id} className="relative bg-purple-600 text-white z-0 flex flex-col items-center p-8 border rounded-md">
 							<span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-600 dark:text-gray-50">Personal</span>
 							<p className="my-6 text-4xl font-bold dark:text-violet-600">
 								{sb.price}/{sb.time}</p>

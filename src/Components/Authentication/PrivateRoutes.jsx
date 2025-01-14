@@ -5,8 +5,6 @@ const PrivateRoutes = ({children}) => {
 
     const {user, loading} = UseAuth();
 
-    
-
     if(loading){
         return <div>Loading........</div>
     }

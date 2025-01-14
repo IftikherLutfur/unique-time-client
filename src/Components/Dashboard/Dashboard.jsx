@@ -18,7 +18,7 @@ const Dashboard = () => {
             <div className="flex flex-col w-full lg:flex-row">
 
 
-                <div className="h-full p-3 space-y-2 min-h-screen w-60 dark:bg-gray-50 dark:text-gray-800">
+                <div className="h-full p-3 space-y-2 min-h-screen w-60 bg-slate-200 font-bold dark:text-gray-800">
                     <div className="flex items-center p-2 space-x-4">
                         <img src={user.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
                         <div>
@@ -28,7 +28,7 @@ const Dashboard = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="divide-y dark:divide-gray-300">
+                    <div className="divide-y bg-slate-200">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
 
                             <li>

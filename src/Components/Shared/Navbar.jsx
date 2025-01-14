@@ -4,120 +4,144 @@ import UseAuth from "../../Hooks/UseAuth";
 import UseAdmin from "../Dashboard/UseAdmin";
 import UsePremium from "../../Hooks/UsePremium";
 
-
 const Navbar = () => {
-    
     const { user, logOut } = UseAuth();
-    const [isOpen, setIsOpen] = useState(true);
-     const [isAdmin] = UseAdmin(); 
-     const [isPremium] = UsePremium();
-    const handleLogOut = () =>{
-        logOut();
-    }
+    const [isOpen, setIsOpen] = useState(false);
 
-    
+    const [isAdmin] = UseAdmin();
+    const [isPremium] = UsePremium();
+
+    const handleLogOut = () => {
+        logOut();
+    };
 
     return (
         <div className="fixed z-10 w-full bg-opacity-60 bg-black text-white">
-            <nav className="">
-                <div className="container px-6 py-4 mx-auto">
-                    <div className="lg:flex lg:items-center lg:justify-between">
-                        <div className="flex items-center justify-between">
-                            <a href="#">
-                                <h1 className="text-2xl text-white font-bold">Unique <em>Time</em></h1>
-                            </a>
+            <nav className="container mx-auto px-6 lg:flex lg:items-center lg:justify-between">
+                {/* Logo */}
+                <div className="flex items-center justify-between">
+                    <h1 className="text-2xl font-bold">
+                        Unique <em>Time</em>
+                    </h1>
+                    {/* Hamburger Menu */}
+                    <button
+                        type="button"
+                        className="lg:hidden text-gray-200 hover:text-gray-400 focus:outline-none"
+                        aria-label="toggle menu"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-6 h-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                            />
+                        </svg>
+                    </button>
+                </div>
 
-
-                            <div className="flex lg:hidden">
-                                <button type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
-
-
-                                </button>
-                            </div>
-                        </div>
-
-
-                        <div className="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
-                            <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-                              <div>
-                              <NavLink to='/'>
-                               <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200
-                     hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
-                               </NavLink>
-                              </div>
-
-
-                             { user && <div>
-                               <NavLink to='/addArticle'>
-                                <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Add Articles</a>
-                                </NavLink>
-                               </div>}
-
-                             <div>
-                             <NavLink to='/allArticlesForUser'>
-                              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">All Articles</a>
-                              </NavLink>
-                            
-                             </div>
-
-                             {isPremium && user ? <div>
-                             <NavLink to='/premiumArticle'>
-                              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Premium</a>
-                              </NavLink>
-                             </div> : ''}
-
-                            { user && <div>
-                             <NavLink to='/myArticle'>
-                              <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">My Articles</a>
-                              </NavLink>
-                             </div>}
-
-                                <div>
-                                <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Subscription</a>
+                {/* Links */}
+                <div
+                    className={`${
+                        isOpen ? "block" : "hidden"
+                    } lg:flex lg:items-center lg:space-x-6 transition-all`}
+                >
+                    <NavLink
+                        to="/"
+                        className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                    >
+                        Home
+                    </NavLink>
+                    {user && (
+                        <NavLink
+                            to="/addArticle"
+                            className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                        >
+                            Add Articles
+                        </NavLink>
+                    )}
+                    <NavLink
+                        to="/allArticlesForUser"
+                        className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                    >
+                        All Articles
+                    </NavLink>
+                    {isPremium && user && (
+                        <NavLink
+                            to="/premiumArticle"
+                            className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                        >
+                            Premium Articles 
+                        </NavLink>
+                    )}
+                    {user && (
+                        <NavLink
+                            to="/myArticle"
+                            className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                        >
+                            My Articles
+                        </NavLink>
+                    )}
+                    {isAdmin && user && (
+                        <NavLink
+                            to="/dashboard"
+                            className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                        >
+                            Dashboard
+                        </NavLink>
+                    )}
+                    {user ? (
+                        <div className="relative inline-block">
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                            >
+                                <img
+                                    className="w-10 h-10 rounded-full border-2 border-green-400"
+                                    src={user.photoURL}
+                                    alt="User Profile"
+                                />
+                            </button>
+                            {isOpen && (
+                                <div className="absolute right-0 w-48 bg-white text-gray-800 rounded-md shadow-lg mt-2">
+                                    <NavLink
+                                        to="/userProfile"
+                                        className="block px-4 py-2 hover:bg-gray-200"
+                                    >
+                                        Your Profile
+                                    </NavLink>
+                                    <button
+                                        onClick={handleLogOut}
+                                        className="block px-4 py-2 text-left w-full hover:bg-gray-200"
+                                    >
+                                        Sign Out
+                                    </button>
                                 </div>
-
-                            {isAdmin && user ? <NavLink to='dashboard'>
-                            <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</a>
-                                </NavLink> : '' } 
-                                {user ?
-                                    <a onClick={() => setIsOpen(!isOpen)} href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 rounded-md lg:mt-0 dark:text-gray-200 ">
-                                        <img className="w-[60px] h-[60px] rounded-full border-2 border-green-" src={user.photoURL} alt="" /></a>
-                                    :
-                                    <div>
-                                        <NavLink to='/login'><a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</a></NavLink>
-                                        <NavLink to='/register'>
-                                            <a href="#" className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Register</a>
-                                        </NavLink>
-                                    </div>
-
-                                }
-                            </div>
-
-{user && <div> 
-    
-{ isOpen || 
-                             <div className="relative inline-block mt-20">
-
-
-
-                                <div
-
-                                    className="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
-                                >
-                                    <NavLink to='/userProfile'><a href="#" className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"> your profile </a></NavLink>
-                                    <a href="#" className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"> Your projects </a>
-                                    <a href="#" className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"> Help </a>
-                                    <a href="#" className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"> Settings </a>
-                                    <a onClick={handleLogOut} href="#" className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"> Sign Out 
-                                    </a>
-                                </div>
-                            </div>
-                            }
-</div>}
-
-
+                            )}
                         </div>
-                    </div>
+                    ) : (
+                        <div>
+                            <NavLink
+                                to="/login"
+                                className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                            >
+                                Login
+                            </NavLink>
+                            <NavLink
+                                to="/register"
+                                className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                            >
+                                Register
+                            </NavLink>
+                        </div>
+                    )}
                 </div>
             </nav>
         </div>

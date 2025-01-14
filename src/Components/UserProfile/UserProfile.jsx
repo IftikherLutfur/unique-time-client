@@ -2,60 +2,72 @@ import { useForm } from "react-hook-form";
 import UseAuth from "../../Hooks/UseAuth";
 
 const UserProfile = () => {
-
     const { user, update } = UseAuth();
 
     const { register, handleSubmit } = useForm({
         shouldUseNativeValidation: true,
-    })
+    });
+
     const onSubmit = async (data) => {
-        console.log(data)
+        console.log(data);
         update(data.name, data.image)
-        .then(result=>{
-            console.log(result.ur);
-        })
-        .catch(error=>{
-            console.log(error);
-        })
-    }
+            .then(result => {
+                console.log(result.ur);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     return (
-        <div>
-            <div className="flex flex-col max-h-full pt-28 p-6  dark:bg-gray-50 dark:text-gray-800 text-center max-w-md mx-36">
-                <img src={user.photoURL} alt="" className="  h-64 rounded-sm sm:h-96 " />
-                <div>
-                    <h2 className="text-xl font-semibold">{user.displayName}</h2>
-                    <span className="block pb-2 text-sm dark:text-gray-600">{user.email}</span>
+        <div className="py-10 px-4">
+            <div className="flex flex-col items-center max-w-md mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-white">
+                {/* Profile Image */}
+                <img 
+                    src={user.photoURL} 
+                    alt={user.displayName} 
+                    className="w-36 h-36 sm:w-48 sm:h-48 rounded-full object-cover mb-4"
+                />
+
+                {/* User Info */}
+                <h2 className="text-2xl font-semibold mb-2">{user.displayName}</h2>
+                <span className="text-sm text-gray-500 mb-6">{user.email}</span>
+
+                {/* Form */}
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+                    {/* Update Name */}
                     <div>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div>
-
-                                <label className="block mb-2 text-sm font-bold">Update Name</label>
-
-                                <input className="border-2 w-72 h-8 px-3 py-2  rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
-                                    {...register("name", {
-                                        required: "Please enter your first name.",
-                                    })}
-                                />
-                            </div>
-                            <div>
-
-                                <label className="block mb-2 text-sm font-bold">Update Image</label>
-
-                                <input className="border-2 w-72 h-8 px-3 py-2  rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
-                                    {...register("image", {
-                                        required: "Please enter your first name.",
-                                    })}
-                                />
-                            </div>
-
-                            <div className="my-5">
-                                <button className="btn">Update</button>
-                            </div>
-                        </form>
-
+                        <label htmlFor="name" className="block text-sm font-bold text-gray-700 dark:text-gray-300">Update Name</label>
+                        <input 
+                            id="name"
+                            type="text"
+                            className="w-full p-2 border-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            {...register("name", {
+                                required: "Please enter your name.",
+                            })}
+                        />
                     </div>
-                </div>
+
+                    {/* Update Image */}
+                    <div>
+                        <label htmlFor="image" className="block text-sm font-bold text-gray-700 dark:text-gray-300">Update Image URL</label>
+                        <input 
+                            id="image"
+                            type="text"
+                            className="w-full p-2 border-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            {...register("image", {
+                                required: "Please enter your image URL.",
+                            })}
+                        />
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="my-5">
+                        <button type="submit" className="w-full py-2 px-4 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-600 transition-colors">
+                            Update Profile
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     );

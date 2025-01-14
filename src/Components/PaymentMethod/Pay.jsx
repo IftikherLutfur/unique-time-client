@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
 
@@ -34,9 +35,7 @@ const Pay = () => {
         const totalPrice = periodValue ? (priceNumber * periodValue).toFixed(2) : 0;
         setTotalPrice(totalPrice);
         // console.log(totalPrice);
-
-
-        navigate(`/payment/${totalPrice}`);
+navigate(`/payment/${totalPrice}`);
     };
 
     return (
@@ -66,6 +65,7 @@ const Pay = () => {
                         >
                             Subscribe
                         </button>
+                        <Toaster/>
                     </div>
                 </form>
             </div>

@@ -46,8 +46,8 @@ const AddArticles = () => {
     return (
         <div className="pt-32">
             <SectionTitle heading="add an article"></SectionTitle>
-            <section className="max-w-4xl p-6 mx-auto bg-pink-400 text-white rounded-md shadow-md bg">
-                <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Add Article</h2>
+            <section className="max-w-4xl p-6 mx-auto bg-zinc-800 text-white rounded-md shadow-md bg">
+                <h2 className="text-lg font-semibold text-white">Add Article</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -105,7 +105,7 @@ const AddArticles = () => {
                     </div>
 
                     <div className="flex justify-end mt-6">
-                        <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Add Article</button>
+                        <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-purple-500 rounded-md hover:bg-purple-600">Add Article</button>
                         <Toaster />
                     </div>
                 </form>
