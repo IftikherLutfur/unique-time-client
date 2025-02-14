@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAdmin from "../Dashboard/UseAdmin";
@@ -7,6 +7,7 @@ import UsePremium from "../../Hooks/UsePremium";
 const Navbar = () => {
     const { user, logOut } = UseAuth();
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const [isAdmin] = UseAdmin();
     const [isPremium] = UsePremium();
@@ -14,6 +15,18 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut();
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest(".profile-menu")) {
+                setIsDropdownOpen(false);
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className="fixed z-10 w-full bg-opacity-60 bg-black text-white">
@@ -98,9 +111,9 @@ const Navbar = () => {
                         </NavLink>
                     )}
                     {user ? (
-                        <div className="relative inline-block">
+                        <div className="relative inline-block profile-menu">
                             <button
-                                onClick={() => setIsOpen(!isOpen)}
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                 className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
                             >
                                 <img
@@ -109,7 +122,7 @@ const Navbar = () => {
                                     alt="User Profile"
                                 />
                             </button>
-                            {isOpen && (
+                            {isDropdownOpen && (
                                 <div className="absolute right-0 w-48 bg-white text-gray-800 rounded-md shadow-lg mt-2">
                                     <NavLink
                                         to="/userProfile"
@@ -127,16 +140,16 @@ const Navbar = () => {
                             )}
                         </div>
                     ) : (
-                        <div>
+                        <div className="py-2">
                             <NavLink
                                 to="/login"
-                                className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                                className="block mt-2 lg:mt-0 px-3 text-gray-200 hover:bg-gray-700 rounded-md"
                             >
                                 Login
                             </NavLink>
                             <NavLink
                                 to="/register"
-                                className="block mt-2 lg:mt-0 px-3 py-2 text-gray-200 hover:bg-gray-700 rounded-md"
+                                className="block mt-2 lg:mt-0 px-3 text-gray-200 hover:bg-gray-700 rounded-md"
                             >
                                 Register
                             </NavLink>

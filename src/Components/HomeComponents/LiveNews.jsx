@@ -1,113 +1,69 @@
-
 const LiveNews = () => {
     return (
-        <div>
-            <section className="px-5 py-10 dark:bg-gray-100 dark:text-gray-800">
-	<div className="container grid grid-cols-12 mx-auto gap-y-6 md:gap-10">
-		<div className="flex flex-col justify-between col-span-12 py-2 space-y-8 md:space-y-16 md:col-span-3">
-			<div className="flex flex-col space-y-8 md:space-y-12">
-				<div className="flex flex-col space-y-2">
-					<h3 className="flex items-center space-x-2 dark:text-gray-600">
-						<span className="flex-shrink-0 w-2 h-2 uppercase rounded-full dark:bg-violet-600"></span>
-						<span className="text-xs font-bold tracking-wider uppercase">Exclusive</span>
-					</h3>
-					<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Donec sed elit quis odio mollis dignissim eget et nulla.</a>
-					<p className="text-xs dark:text-gray-600">47 minutes ago by
-						<a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-600">Leroy Jenkins</a>
-					</p>
-				</div>
-				<div className="flex flex-col space-y-2">
-					<h3 className="flex items-center space-x-2 dark:text-gray-600">
-						<span className="flex-shrink-0 w-2 h-2 uppercase rounded-full dark:bg-violet-600"></span>
-						<span className="text-xs font-bold tracking-wider uppercase">Exclusive</span>
-					</h3>
-					<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Ut fermentum nunc quis ipsum laoreet condimentum.</a>
-					<p className="text-xs dark:text-gray-600">2 hours ago by
-						<a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-600">Leroy Jenkins</a>
-					</p>
-				</div>
-				<div className="flex flex-col space-y-2">
-					<h3 className="flex items-center space-x-2 dark:text-gray-600">
-						<span className="flex-shrink-0 w-2 h-2 uppercase rounded-full dark:bg-violet-600"></span>
-						<span className="text-xs font-bold tracking-wider uppercase">Exclusive</span>
-					</h3>
-					<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Nunc nec ipsum lobortis, pulvinar neque sed.</a>
-					<p className="text-xs dark:text-gray-600">4 hours ago by
-						<a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-600">Leroy Jenkins</a>
-					</p>
-				</div>
-			</div>
-			<div className="flex flex-col w-full space-y-2">
-				<div className="flex w-full h-1 bg-opacity-10 dark:bg-violet-600">
-					<div className="w-1/2 h-full dark:bg-violet-600"></div>
-				</div>
-				<a rel="noopener noreferrer" href="#" className="flex items-center justify-between w-full">
-					<span className="text-xs font-bold tracking-wider uppercase">See more exclusives</span>
-					<svg viewBox="0 0 24 24" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4 strokeCurrent dark:text-violet-600">
-						<line x1="5" y1="12" x2="19" y2="12"></line>
-						<polyline points="12 5 19 12 12 19"></polyline>
-					</svg>
-				</a>
-			</div>
-		</div>
-		<div className="relative flex col-span-12 dark:bg-gray-500 bg-center bg-no-repeat bg-cover xl:col-span-6 lg:col-span-5 md:col-span-9 min-h-96" >
-			<span className="absolute px-1 pb-2 text-xs font-bold uppercase border-b-2 left-6 top-6 dark:text-gray-800 dark:border-violet-600">paris, france</span>
-			<a className="flex flex-col items-center justify-end p-6 text-center sm:p-8 group dark:via- flex-grow-1 bg-gradient-to-b dark:from-gray-50 dark:to-gray-50">
-				<span className="flex items-center mb-4 space-x-2 dark:text-violet-600">
-					<span className="relative flex-shrink-0 w-2 h-2 rounded-full dark:bg-violet-600">
-						<span className="absolute flex-shrink-0 w-3 h-3 rounded-full -left-1 -top-1 animate-ping dark:bg-violet-600"></span>
-					</span>
-					<span className="text-sm font-bold">Live</span>
-				</span>
-				<h1 rel="noopener noreferrer" href="#" className="font-serif text-2xl font-semibold group-hover:underline dark:text-gray-800">Morbi mattis justo est, ac consectetur dui eleifend vitae. Donec venenatis?</h1>
-			</a>
-		</div>
-		<div className="hidden py-2 xl:col-span-3 lg:col-span-4 md:hidden lg:block">
-			<div className="mb-8 space-x-5 border-b-2 border-opacity-10 dark:border-violet-600">
-				<button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 dark:border-violet-600">Latest</button>
-				<button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 dark:border- dark:text-gray-600">Popular</button>
-			</div>
-			<div className="flex flex-col divide-y dark:divide-gray-300">
-				<div className="flex px-1 py-4">
-					<img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/244x324" />
-					<div className="flex flex-col flex-grow">
-						<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Aenean ac tristique lorem, ut mollis dui.</a>
-						<p className="mt-auto text-xs dark:text-gray-600">5 minutes ago
-							<a rel="noopener noreferrer" href="#" className="block dark:text-blue-600 lg:ml-2 lg:inline hover:underline">Politics</a>
-						</p>
-					</div>
-				</div>
-				<div className="flex px-1 py-4">
-					<img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/245x325" />
-					<div className="flex flex-col flex-grow">
-						<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Nulla consectetur efficitur.</a>
-						<p className="mt-auto text-xs dark:text-gray-600">14 minutes ago
-							<a rel="noopener noreferrer" href="#" className="block dark:text-blue-600 lg:ml-2 lg:inline hover:underline">Sports</a>
-						</p>
-					</div>
-				</div>
-				<div className="flex px-1 py-4">
-					<img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/246x326" />
-					<div className="flex flex-col flex-grow">
-						<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Vitae semper augue purus tincidunt libero.</a>
-						<p className="mt-auto text-xs dark:text-gray-600">22 minutes ago
-							<a rel="noopener noreferrer" href="#" className="block dark:text-blue-600 lg:ml-2 lg:inline hover:underline">World</a>
-						</p>
-					</div>
-				</div>
-				<div className="flex px-1 py-4">
-					<img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/247x327" />
-					<div className="flex flex-col flex-grow">
-						<a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Suspendisse potenti.</a>
-						<p className="mt-auto text-xs dark:text-gray-600">37 minutes ago
-							<a rel="noopener noreferrer" href="#" className="block dark:text-blue-600 lg:ml-2 lg:inline hover:underline">Business</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+        <div className="max-w-screen-xl p-5 mx-auto dark:bg-gray-100 dark:text-gray-800">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-0 lg:grid-rows-2">
+                {[
+                    {
+                        title: "Bangladesh 2.0 made by Gen-Z",
+                        image: "https://www.aljazeera.com/wp-content/uploads/2024/08/AP24218390125876-1722875844.jpg?resize=770%2C513&quality=80",
+                        date: "05",
+                        month: "Aug",
+                    },
+                    {
+                        title: "End the of the facist era",
+                        image: "https://www.shokalshondha.com/wp-content/uploads/elementor/thumbs/newspaers-headlines-qs72r2t5htutkrc4vsystac1b9po549v1brrko8obc.jpg",
+                        date: "06",
+                        month: "Aug",
+                    },
+                    {
+                        title: "How to save yourself from the allergy?",
+                        image: "https://img.freepik.com/free-photo/unrecognizable-doctor-extending-digital-tab-anonymous-patient-fill-questionnaire_1098-19318.jpg?t=st=1739479051~exp=1739482651~hmac=260a8608040eaacab72054982e81b1f7df66a96182aecf6e7d33602599693a3a&w=996",
+                        date: "01",
+                        month: "Aug",
+                    },
+                    {
+                        title: "Officiis report has been publishesd as soon as possible",
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStkCb9JvKJwHLJRcpXigJap3JJQ3-HJtH21w&s",
+                        date: "28",
+                        month: "Dec",
+                    },
+                    {
+                        title: "Soumya Sarkar is full fit to play ICC Champions Trophy 2025",
+                        image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTGS2mZFPlCGhmYvxyDfzdTablnbwyXcWgvzYwyAHkffvKUzNj--VbFHRhgWngpOgVW0LcA7mX2Tnr9tYE",
+                        date: "09",
+                        month: "Feb",
+                    },
+                ].map((news, index) => (
+                    <div
+                        key={index}
+                        className={`relative flex items-end justify-start w-full text-left bg-center bg-cover cursor-pointer h-96 group text-white ${
+                            index === 0 ? "md:col-span-2 lg:row-span-2 lg:h-full" : ""
+                        }`}
+                        style={{ backgroundImage: `url(${news.image})` }}
+                    >
+                        {/* Black Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+                        {/* Date and Title */}
+                        <div className="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+                            <div className="flex flex-col justify-start text-center text-white">
+                                <span className="text-3xl font-semibold leading-none tracking-wide">{news.date}</span>
+                                <span className="leading-none uppercase">{news.month}</span>
+                            </div>
+                        </div>
+
+                        <h2 className="z-10 p-5">
+                            <a
+                                rel="noopener noreferrer"
+                                href="#"
+                                className="font-medium text-md group-hover:underline lg:text-2xl lg:font-semibold text-white"
+                            >
+                                {news.title}
+                            </a>
+                        </h2>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

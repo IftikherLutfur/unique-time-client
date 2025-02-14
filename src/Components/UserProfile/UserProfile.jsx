@@ -3,7 +3,6 @@ import UseAuth from "../../Hooks/UseAuth";
 
 const UserProfile = () => {
     const { user, update } = UseAuth();
-
     const { register, handleSubmit } = useForm({
         shouldUseNativeValidation: true,
     });
@@ -21,7 +20,7 @@ const UserProfile = () => {
 
     return (
         <div className="py-10 px-4">
-            <div className="flex flex-col items-center max-w-md mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-white">
+            <div className="flex flex-col items-center max-w-md mx-auto p-6 bg-[#f7f7f7] rounded-lg shadow-lg">
                 {/* Profile Image */}
                 <img 
                     src={user.photoURL} 
@@ -37,11 +36,11 @@ const UserProfile = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
                     {/* Update Name */}
                     <div>
-                        <label htmlFor="name" className="block text-sm font-bold text-gray-700 dark:text-gray-300">Update Name</label>
+                        <label htmlFor="name" className="block text-sm font-bold text-gray-700">Update Name</label>
                         <input 
                             id="name"
                             type="text"
-                            className="w-full p-2 border-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="w-full p-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                             {...register("name", {
                                 required: "Please enter your name.",
                             })}
@@ -50,11 +49,11 @@ const UserProfile = () => {
 
                     {/* Update Image */}
                     <div>
-                        <label htmlFor="image" className="block text-sm font-bold text-gray-700 dark:text-gray-300">Update Image URL</label>
+                        <label htmlFor="image" className="block text-sm font-bold text-gray-700">Update Image URL</label>
                         <input 
                             id="image"
                             type="text"
-                            className="w-full p-2 border-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="w-full p-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                             {...register("image", {
                                 required: "Please enter your image URL.",
                             })}

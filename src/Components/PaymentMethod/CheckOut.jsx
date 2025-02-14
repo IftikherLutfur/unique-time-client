@@ -5,137 +5,99 @@ import UserUpdate from "../../Hooks/UserUpdate";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
 
-
 const CheckOut = ({ subscriptionData }) => {
-    const [error, setError] = useState('')
-    const [success, setSuccess] = useState('')
-    const [clientSecret, setClientSecret] = useState("")
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [clientSecret, setClientSecret] = useState("");
     const { user } = UseAuth();
-    // const [userInfo] = useUserData();
-    // console.log(userInfo)
     const stripe = useStripe();
     const elements = useElements();
-    const total = subscriptionData.price;
-    // const [cart] = UseSubscriptionCart();
     const axiosSecure = useAxiosSecure();
     const [userData] = UserUpdate();
-    console.log(userData)
-    // const useData = userData.map( data =>data?.email === user?.email) 
-    // console.log(useData);
 
     useEffect(() => {
-        axiosSecure.post('/create-payment-intent', { price: total })
-            .then(res => {
-                console.log('clientSecret', res.data.clientSecret)
-                setClientSecret(res.data.clientSecret)
-            })
-
-    }, [axiosSecure, total])
-
-    const handleUpdate = async (user) => {
-        console.log(user);
-
-    }
-
+        if (subscriptionData?.price) {
+            axiosSecure.post('/create-payment-intent', { price: subscriptionData.price })
+                .then(res => setClientSecret(res.data.clientSecret))
+                .catch(err => console.error("Error fetching client secret:", err));
+        }
+    }, [axiosSecure, subscriptionData]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!stripe || !elements) {
-            return;
-        }
-        const card = elements.getElement(CardElement)
-        if (card === null) {
-            return;
-        }
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card
-        })
-        if (error) {
-            console.log("payment error", error);
-            setError(error.message)
-        }
-        else {
-            console.log("Payment success", paymentMethod);
-            setError('')
+        if (!stripe || !elements) return;
+        const card = elements.getElement(CardElement);
+        if (!card) return;
 
-        }
+        setError('');
+        setSuccess('');
 
-        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    email: user?.email || "anonymous",
-                    name: user?.displayName || "anonymous"
-                }
+        try {
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: 'card',
+                card,
+            });
+            if (error) {
+                setError(error.message);
+                return;
             }
-        })
-        if (confirmError) {
-            console.log('confirm error');
-        }
-        else {
-            console.log('payment intent', paymentIntent);
+
+            const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card,
+                    billing_details: {
+                        email: user?.email || "anonymous",
+                        name: user?.displayName || "anonymous",
+                    },
+                },
+            });
+            if (confirmError) {
+                setError(confirmError.message);
+                return;
+            }
+
             if (paymentIntent.status === "succeeded") {
-                console.log("transaction id", paymentIntent.id);
-                setSuccess(paymentIntent.id)
-                const info = {
-                    isPremium: "yes"
+                setSuccess(paymentIntent.id);
+                const updateRes = await axiosSecure.patch(`/isPremium/update/${user?.email}`, { isPremium: "yes" });
+                if (updateRes.data.modifiedCount > 0) {
+                    toast.success("Payment Successful");
                 }
-                const updateRes = await axiosSecure.patch(`/isPremium/update/${user?.email}`, info)
-                console.log('update', updateRes.data)
-                if(updateRes.data.modifiedCount>0){
-                    toast.success("Payment Successful")
-                }
-                return updateRes.data;
-                
             }
+        } catch (err) {
+            setError("Payment failed. Please try again.");
+            console.error("Payment error:", err);
         }
-
-
-
-    }
+    };
 
     return (
-        <form className="w-96 mx-[330px] mt-10" onSubmit={handleSubmit}>
+        <form className="w-96 mx-auto mt-10" onSubmit={handleSubmit}>
             <CardElement
                 options={{
                     style: {
                         base: {
                             fontSize: '16px',
                             color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
-                            },
+                            '::placeholder': { color: '#aab7c4' },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
+                        invalid: { color: '#9e2146' },
                     },
                 }}
             />
-            <div className="w-96 border-2">
-                <select className="w-full">
-                    <option value="1 minutes">1 minutes</option>
+            <div className="w-full border-2 mt-4">
+                <select className="w-full p-2 border rounded-md">
+                    <option value="1 minutes">1 minute</option>
                     <option value="5 days">5 days</option>
                     <option value="10 days">10 days</option>
                 </select>
             </div>
-            <div className="text-center">
-                <button onClick={() => handleUpdate(user)}
-                    className="btn w-full bg-pink-400 mt-5 text-center"
-                    type="submit" disabled={!stripe || !clientSecret}>
-                    Pay
-                </button>
-                <Toaster/>
-            </div>
-
-            <p className="text-red-600">
-                {error}
-            </p>
-            <p>{success}</p>
+            <button className="btn w-full bg-pink-400 mt-5" type="submit" disabled={!stripe || !clientSecret}>
+                Pay
+            </button>
+            <Toaster />
+            {error && <p className="text-red-600 mt-2">{error}</p>}
+            {success && <p className="text-green-600 mt-2">Payment Successful! Transaction ID: {success}</p>}
         </form>
-
     );
 };
 

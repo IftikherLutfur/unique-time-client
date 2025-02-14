@@ -21,21 +21,21 @@ const PremiumArticle = () => {
           "Here are all premium articles. You can only see the full article after purchasing our subscription."
         }
       />
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {cartPremium.map((cart) => (
           <div
             key={cart._id}
-            className="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden"
+            className="max-w-sm mx-auto bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-105"
           >
             <img
-              className="w-full h-48 object-cover"
+              className="w-full h-52 object-cover"
               src={cart.image}
               alt={cart.title}
             />
-            <div className="p-4">
+            <div className="p-5">
               <h5 className="text-xl font-semibold text-gray-800">{cart.title}</h5>
               <NavLink to={`/premiums/${cart._id}`}>
-                <button className="btn w-full mt-4 bg-purple-500 font-semibold py-1 text-white hover:bg-purple-600 transition-colors">
+                <button className="w-full mt-4 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-colors">
                   Read More
                 </button>
               </NavLink>

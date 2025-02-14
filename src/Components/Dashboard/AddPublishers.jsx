@@ -43,13 +43,13 @@ const AddPublishers = () => {
            <div className="ml-72 mt-10">
            <SectionTitle heading='Add publisher'/>
            </div>
-           <section className="ml-72 mt-5 p-6 mx-auto  rounded-md shadow-md bg-zinc-800">
-    <h2 className="text-lg text-center font-semibold  capitalize text-white">Add A Publisher</h2>
+           <section className="ml-72 mt-5 p-6 mx-auto  rounded-md shadow-md bg-slate-100 text-black">
+    <h2 className="text-lg text-center font-semibold  capitalize ">Add A Publisher</h2>
 
     <form onSubmit={handleSubmit(onSubmit)}>
         <div className="">
             <div className="mt-5">
-            <label className="text-white">Publisher Name</label>
+            <label className="">Publisher Name</label>
                 <input 
                 {...register('name', {
                     required:"can't press the add button until the fill up",
