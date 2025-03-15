@@ -22,7 +22,7 @@ const AllArticles = () => {
 
     useEffect(() => {
     const fetchData = async () =>{
-    const res= await axios.get("http://localhost:5000/article")
+    const res= await axios.get("https://unique-time-server.vercel.app/article")
     setData(res.data)
     }
     fetchData()

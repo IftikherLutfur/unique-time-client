@@ -4,6 +4,7 @@ import UseAuth from "../../Hooks/UseAuth";
 import UseAdmin from "../Dashboard/UseAdmin";
 import UsePremium from "../../Hooks/UsePremium";
 import { ThemeContext } from "../../../ThemeContext";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const Navbar = () => {
     const { user, logOut } = UseAuth();
@@ -61,7 +62,7 @@ const Navbar = () => {
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                 className="block mt-2 lg:mt-0 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
                             >
-                                <img className="w-10 h-10 rounded-full border-2 border-black" src={user.photoURL} alt="User Profile" />
+                                <img className="w-10 h-10 rounded-full border-2 border-black dark:border-white" src={user.photoURL} alt="User Profile" />
                             </button>
                             {isDropdownOpen && (
                                 <div className="absolute right-0 w-48 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-md shadow-lg mt-2">
@@ -78,8 +79,8 @@ const Navbar = () => {
                     )}
 
                     {/* Dark Mode Toggle Button */}
-                    <button onClick={toggleTheme} className="px-4 py-2 bg-gray-300 dark:bg-gray-700 rounded">
-                        {isDarkMode ? "Light Mode" : "Dark Mode"}
+                    <button onClick={toggleTheme} className="px-4 py-2 rounded">
+                        {isDarkMode ?  <FaSun size={24} /> : <FaMoon size={24}/> }
                     </button>
                 </div>
             </nav>
