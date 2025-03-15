@@ -1,31 +1,42 @@
 import { AiFillDelete } from "react-icons/ai";
 import { MdCancel, MdDownloadDone } from "react-icons/md";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import SectionTitle from "../SectionTitle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const AllArticles = () => {
+    const [data, setData] = useState([])
     const axiosSecure = useAxiosSecure();
 
-    const { data: articles = [], refetch } = useQuery({
-        queryKey: ['article'],
-        queryFn: async () => {
-            const res = axiosSecure.get('/article');
-            return (await res).data;
-        }
-    });
+    // const { data: articles = [], refetch } = useQuery({
+    //     queryKey: ['article'],
+    //     queryFn: async () => {
+    //         const res = axiosSecure.get('/article');
+    //         return (res.data);
+    //     }
+
+    // });
+
+    useEffect(() => {
+    const fetchData = async () =>{
+    const res= await axios.get("http://localhost:5000/article")
+    setData(res.data)
+    }
+    fetchData()
+    }, [])
 
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
     const articlesPerPage = 6;
 
     // Calculate the total number of pages
-    const totalPages = Math.ceil(articles.length / articlesPerPage);
+    const totalPages = Math.ceil(data.length / articlesPerPage);
 
     // Get the articles for the current page
-    const currentArticles = articles.slice(
+    const currentArticles = data.slice(
         (currentPage - 1) * articlesPerPage,
         currentPage * articlesPerPage
     );
@@ -41,14 +52,14 @@ const AllArticles = () => {
         const updateRes = await axiosSecure.patch(`/article/${article._id}`);
         if (updateRes.data.matchedCount > 0) {
             toast.success('Accepted');
-            refetch();
+            setData((prevData) => prevData.filter((item) => item._id !== article._id)); 
         }
         return updateRes.data;
     };
 
     const handleCancel = async (article) => {
         const cancelUpdate = await axiosSecure.patch(`/article/admin/${article._id}`);
-        refetch();
+        setData((prevData) => prevData.filter((item) => item._id !== article._id));
         return cancelUpdate.data;
     };
 
@@ -56,20 +67,20 @@ const AllArticles = () => {
         const deleteRes = await axiosSecure.delete(`/article/${article._id}`);
         if (deleteRes.data.deletedCount > 0) {
             toast.success("Article has been deleted");
-            refetch();
+            setData((prevData) => prevData.filter((item) => item._id !== article._id));
         }
         return deleteRes.data;
     };
 
     return (
         <div className="mt-6 mr-24">
-            <SectionTitle heading='Here is all article' subHeading='Hello admin you can accept, reject and delete anyone you want'/>
+            <SectionTitle heading='Here is all article' subHeading='Hello admin you can accept, reject and delete anyone you want' />
             <section className="container px-4 mx-auto">
                 <div className="flex items-center gap-x-3">
                     <h2 className="text-lg font-medium text-gray-800 dark:text-white">Articles</h2>
                     <div className="text-center">
                         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400 font-semibold">
-                            Total Articles: {articles.length}
+                            Total Articles: {data.length}
                         </span>
                     </div>
                 </div>
@@ -94,7 +105,7 @@ const AllArticles = () => {
                                             </th>
 
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Title</th>
-                                          
+
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Actions</th>
                                         </tr>
                                     </thead>
@@ -104,7 +115,7 @@ const AllArticles = () => {
                                             <tr>
                                                 <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                     <div className="flex items-center gap-x-3">
-                                                        
+
                                                         <div>
                                                             <h2 className="font-medium text-gray-800 dark:text-white">{article.email}</h2>
                                                         </div>

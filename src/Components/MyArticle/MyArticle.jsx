@@ -39,7 +39,7 @@ const MyArticle = () => {
             <SectionTitle heading='My article' subHeading='Here is the all artcles that you have added. you can see the status and you can do edit and delete your articles' />
             <section className="container px-4 mt-5 max-w-full">
                 <div className="flex items-center gap-x-3">
-                    <h2 className="text-lg font-medium text-gray-800 dark:text-white">Team members</h2>
+                    {/* <h2 className="text-lg font-medium text-gray-800 dark:text-white">Team members</h2> */}
                     <div className="text-center">
                         <span className="px-3 text-center py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400 font-semibold ">
                             Total Article : {articles.length}</span>
@@ -95,34 +95,34 @@ const MyArticle = () => {
                                                 <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                     <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                         <span className={art.status === 'pending' ? "h-1.5 w-1.5 rounded-full bg-red-500" : "h-1.5 w-1.5 rounded-full bg-emerald-500"}></span>
-                                                        <h2 className={art.status === 'pending' ? "text-sm font-normal text-red-500" : "text-sm font-normal text-black"}>
+                                                        <h2 className={art.status === 'pending' ? "text-sm font-normal text-red-500 dark:text-red-200" : "text-sm font-normal text-black dark:text-white"}>
                                                             {art.status === 'pending' ? "Pending" : art.status}
                                                         </h2>
                                                     </div>
                                                 </td>
 
                                                 <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <h2 className="text-sm font-normal text-white">{art.title}</h2>
+                                                    <h2 className="text-sm font-normal text-black dark:text-white">{art.title}</h2>
                                                 </td>
 
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                     <button className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                         <NavLink to={`/article/get/${art._id}`}>
-                                                            <p className="text-sm font-normal text-black">Details</p>
+                                                            <p className="text-sm font-normal text-black dark:text-white">Details</p>
                                                         </NavLink>
                                                     </button>
                                                 </td>
 
                                                 <td className="py-4 text-sm font-medium whitespace-nowrap">
                                                     <button onClick={() => handleUpdate(art)} className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 dark:bg-gray-800">
-                                                        <MdEdit size={22} />
-                                                        <span className="text-sm font-normal text-gray-800 dark:text-gray-300">Update</span>
+                                                        <MdEdit size={22} className="text-black dark:text-white" />
+                                                        <span className="text-sm font-normal text-gray-800 dark:text-white">Update</span>
                                                     </button>
                                                 </td>
                                                 <td className="py-4 text-sm font-medium whitespace-nowrap">
                                                     <button onClick={() => handleDelete(art)} className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                                                        <AiFillDelete size={22} />
-                                                        <span className="text-sm font-normal text-gray-800 dark:text-gray-300">Delete</span>
+                                                        <AiFillDelete size={22} className="text-red-400" />
+                                                        <span className="text-sm font-normal text-gray-800 dark:text-white">Delete</span>
                                                     </button>
                                                 </td>
                                             </tr>

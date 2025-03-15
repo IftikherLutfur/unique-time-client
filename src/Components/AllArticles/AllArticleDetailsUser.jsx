@@ -1,27 +1,30 @@
 import { NavLink } from "react-router-dom";
 
 const AllArticleDetailsUser = ({ article }) => {
-	
-	return (
-		<div>
-			<div className="relative flex items-end w-96 justify-start text-left dark:bg-gray-500 bg-center bg-cover h-96">
-				<div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via- dark:from-gray-50 dark:to-gray-50">
-					<img className="h-[300px]" src={article.image} alt="" />
-				</div>
-				<div className="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
-					<a rel="noopener noreferrer" href="#" className="px-3 py-2 text-xs font-semibold tracking-wider uppercase dark:text-gray-800 dark:bg-violet-600">{article.publisher}</a>
-					<a href=""></a>
-				</div>
-
-				<h2 className="z-10 pt-4 p-5">
-					<NavLink to={`/article/get/${article._id}`}>
-						<a rel="noopener noreferrer" href="#" className="font-medium text-md hover:underline dark:text-gray-800">{article.title}</a>
-					</NavLink>
-				</h2>
-
-			</div>
-		</div>
-	);
+    return (
+        <div className="relative w-96 h-[400px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl duration-300 transition-transform transform hover:scale-105">
+            {/* Article Image */}
+            <div className="relative w-full h-[250px] overflow-hidden">
+                <img className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" src={article.image} alt="Article" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute top-3 left-3 bg-violet-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {article.publisher}
+                </div>
+            </div>
+			
+          {/* Article Content */}
+            <div className="p-5 bg-white dark:bg-gray-900">
+                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 hover:text-violet-600 transition-colors">
+                    <NavLink to={`/get/${article._id}`} className="hover:underline">
+                        {article.title}
+                    </NavLink>
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 line-clamp-2">
+                    {article.description || "Click to read more..."} {/* যদি সংক্ষেপিত বিবরণ থাকে */}
+                </p>
+            </div>
+        </div>
+    );
 };
 
 export default AllArticleDetailsUser;

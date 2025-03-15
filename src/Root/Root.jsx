@@ -4,10 +4,12 @@ import Footer from "../Components/Shared/Footer";
 
 const Root = () => {
     return (
-        <div className="max-h-svh">
-            <Navbar/>
-            <Outlet/>
-            <Footer/>
+        <div className="min-h-screen bg-white dark:bg-gray-900">
+            <Navbar />
+            <main>
+                <Outlet />
+            </main>
+            <Footer />
         </div>
     );
 };

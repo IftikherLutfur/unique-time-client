@@ -17,7 +17,7 @@ const Home = () => {
     ]);
 
     useEffect(() => {
-        setTimeout(() => setShowHero(false), 3000);
+        setTimeout(() => setShowHero(false), 2000);
     }, []);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const Home = () => {
     return (
         <main>
             {showHero && (
-                <section className="absolute inset-0 w-full h-full flex items-center justify-center text-center bg-black bg-opacity-50 z-50">
+                <section className="absolute inset-0 w-full h-full flex items-center justify-center text-center  ">
                     <div className="p-6 rounded-lg">
                         <h1 className="text-4xl font-bold text-yellow-400">Welcome to Unique Time</h1>
                         <p className="mt-2 text-lg text-white">Stay updated with the latest happenings around the world.</p>

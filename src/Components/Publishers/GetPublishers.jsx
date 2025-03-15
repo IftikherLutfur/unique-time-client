@@ -20,7 +20,7 @@ const GetPublishers = () => {
                 
             <Marquee speed={150} >
           {getPublisher?.map(publish=>
-            <div key={publish._id} className="border-2 p-4">
+            <div key={publish._id} className="border-2 bg-white p-4">
                 <img className="w-44 h-40" src={publish.image} alt="" />
                 <h1 className="text-center mt-2 text-xl font-semibold">{publish.name}</h1>
             </div>

@@ -50,7 +50,7 @@ const AddArticles = () => {
 
   return (
     <div className="py-20 px-6 md:px-12">
-      <SectionTitle heading="Add an Article" />
+      <SectionTitle heading="Add an Article"  subHeading={"Not published until admin approve it"}/>
       <div className="max-w-4xl mx-auto bg-[#f7f7f7] shadow-lg rounded-lg p-8">
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-6">
           
